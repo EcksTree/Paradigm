@@ -1,0 +1,158 @@
+---------------------------------------
+&&&&&&&&&&&&&&&POKEMON&&&&&&&&&&&&&&&&&
+---------------------------------------
+Ultra Necrozma
+Changed to LIGHT, COSMIC
+
+Milotic
+Changed to WATER, LIGHT
+
+Arourus
+Changed to LIGHT, ICE
+
+Celesteela
+Changed to LIGHT, STEEL
+
+Mega Diancie
+Changed to LIGHT, FAIRY
+
+Mega Sableye
+Changed to DARK, LIGHT
+
+Blacephalon
+Changed to FIRE, LIGHT
+
+Solgaleo
+Changed to COSMIC, STEEL
+
+Lunala
+Changed to COSMIC, GHOST
+
+Deoxys
+Changed to PSYCHIC, COSMIC
+
+Decidueye
+Changed to GRASS, FLYING
+And added ability APPARITIONIZE
+
+Cresselia
+Changed to PSYCHIC, LIGHT
+
+Mega Rayquaza
+Changed to DRAGON, COSMIC
+
+Suicune
+Changed to WATER, ICE
+
+Electivire
+Changed to ELECTRIC, FIGHTING
+
+Solrock
+Changed to FIRE, COSMIC
+
+Lunatone
+Changed to DARK, COSMIC
+
+Starmie
+Changed to WATER, COSMIC
+
+Staryu
+Changed to WATER, COSMIC
+
+Eternatus
+Changed to COSMIC, POISON
+
+Luxray
+Changed to ELECTRIC, DARK
+
+Cosmog
+Changed to COSMIC
+
+Cosmoem
+Changed to COSMIC
+
+Emboar
+Changed attack to 125
+---------------------------------------
+&&&&&&&&&&&&&&&&MOVES&&&&&&&&&&&&&&&&&&
+---------------------------------------
+Spacial Rend
+Changed to COSMIC
+
+Comet Punch
+Changed to COSMIC
+
+Cosmic Power
+Changed to COSMIC
+
+Gravity
+Changed to COSMIC
+
+Meteor Mash
+Changed to COSMIC
+
+Hyperspace Hole
+Changed to COSMIC
+
+Hyperspace Fury
+Changed to COSMIC
+
+Dynamax Cannon
+Changed to COSMIC
+
+Eternabeam
+Changed to COSMIC
+
+Luster Purge
+Changed to LIGHT
+
+Light Screen
+Changed to LIGHT
+
+Lunar Dance
+Change to LIGHT
+
+Power Gem
+Changed to LIGHT
+
+Flash Cannon
+Changed to LIGHT
+
+Dazzling Gleam
+Changed to LIGHT
+
+Light of Ruin
+Changed to LIGHT
+
+Origin Pulse
+Changed to LIGHT
+
+Prismatic Lazer
+Changed to LIGHT
+
+Photon Geyser
+Changed to LIGHT
+
+Meteor Beam
+Changed to COSMIC
+
+Flash
+Changed to LIGHT
+---------------------------------------
+&&&&&&&&&&&&&&&&&CODE&&&&&&&&&&&&&&&&&&
+---------------------------------------
+Settings:
+
+MAXIMUMLEVEL       = 200
+---------------------------------------
+BattleHandlers_Abilities:
+
+BattleHandlers::MoveBaseTypeModifierAbility.add(:APPARITIONIZE,
+  proc { |ability,user,move,type|
+    next if !isConst?(type,PBTypes,:GHOST) || !hasConst?(PBTypes,:FLYING)
+    move.powerBoost = true
+    next getConst(PBTypes,:FLYING)
+  }
+)
+---------------------------------------
+Added Poketch toggle in the debug menu
