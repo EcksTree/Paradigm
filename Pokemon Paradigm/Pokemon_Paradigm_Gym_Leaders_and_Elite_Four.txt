@@ -1,0 +1,233 @@
+------------------------------------------------------------------------------------------------------
+Gym 1: Grass
+    Name:
+    Gender: Male
+    Age:
+    Bio:
+    Ace Level: 16 
+    Ace: Leafeon(Chlorophyll)(Miracle Seed)
+    Team Level: 14
+    Team: Applin(Ripen)(Oran Berry) Tangela(Leaf Gaurd)(Heat Rock) Lombre(Own Tempo)(Utility Umbrella) Shroomish(Poison Heal)(Poison Barb) Phantump(Harvest)(Occa Berry)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#paras+tangela+lombre+shroomish+leafeon+phantump
+------------------------------------------------------------------------------------------------------
+Gym 2: Poison
+    Name:
+    Gender: Female
+    Age:
+    Bio:
+    Ace Level: 20
+    Ace: Mega-Beedrill(Adaptability)(Beedrillite)
+    Team Level: 18
+    Team: Ghastly(Levitate)(Life Orb) Stunky(Stench)(Eviolite) Croagunk(Dry Skin)(Expert Belt) Toxel(Static)(Shuca Berry) Salandit(Corrosion)(Poison Gem)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#beedrill-mega+gastly+stunky+croagunk+mareanie+salandit
+------------------------------------------------------------------------------------------------------
+Gym 3: Steel
+    Name:
+    Gender: Female
+    Age:
+    Bio:
+    Ace Level: 28
+    Ace: Mega-Steelix(Sand Force)(Steelixite)
+    Team Level: 26
+    Team: Cufant(Shear Force)(Life Orb) Togedemaru(Iron Barbs)(Rocky Helmet) Escavalier(Overcoat)(Bug Gem) Probopass(Sand Force)(Smooth Rock) Bronzor(Heat Proof)(Light Clay)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#steelix-mega+skarmory+probopass+escavalier+pawniard+togedemaru
+------------------------------------------------------------------------------------------------------
+Gym 4: Fire
+    Name: Alexandra
+    Gender: Female
+    Age: 11
+    Bio: She adores her Big Sister, Cassandra of the Elite Four, and wants to become even stronger than she is. She gets annoyed when her Older Sister calls her 'Lexi'. She has a suspicous amount of buff firetypes.
+    Ace Level: 36
+    Ace: Mega-Blaziken(Speed Boost)(Blazikenite)
+    Team Level: 34
+    Team: Darmanitan(Zen Mode)() Incineroar(Intimidate)() Magmortar(Flame Body)() Coalossal(Steam Engine)() Cinderace(Libero)(Life Orb)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#ninetales+blaziken-mega+magmortar+darmanitan+talonflame+pyroar
+------------------------------------------------------------------------------------------------------
+Gym 5: Rock
+    Name: 
+    Gender: Male
+    Age:
+    Bio:
+    Ace Level: 42
+    Ace: Mega-Aerodactyl(Tough Claws)
+    Team Level: 40
+    Team: Craydily(Storm Drain) Armaldo(Battle Armour) Carracosta(Solid Rock) Tyrantrum(Strong Jaw) Minior(Shields Down)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#aerodactyl-mega+cradily+armaldo+carracosta+tyrantrum+minior
+------------------------------------------------------------------------------------------------------
+Gym 6: Fighting
+    Name: 
+    Gender:Male
+    Age:
+    Bio:
+    Ace Level: 48
+    Ace: Mega-Gallade(Inner Focus)
+    Team Level: 46
+    Team: Poliwrath(Swift Swim) Crabominable(Iron Fist) Conkeldurr(Guts) Grapploct(Technician) Machamp(No Gaurd)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#primeape+poliwrath+machamp+gallade-mega+conkeldurr+crabominable
+------------------------------------------------------------------------------------------------------
+Gym 7: Dragon
+    Name:
+    Gender: Female
+    Age:
+    Bio:
+    Ace Level: 56
+    Ace: Mega-Sceptile(Lightning Rod)
+    Team Level: 54
+    Team: Zweilous(Hustle) Dragapult(Infiltrator) Noivern(Infiltrator) Dragalge(Adaptability) Kommo-o(Bulletproof)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#sceptile-mega+zweilous+dragalge+noivern+turtonator+kommo-o
+------------------------------------------------------------------------------------------------------
+Gym 8: Water
+    Name:
+    Gender: Female
+    Age:
+    Bio:
+    Ace Level: 62
+    Ace: Mega-Gyrados(Mold Breaker)
+    Team Level: 60
+    Team: Kingdra(Swift Swim) Walrein(Oblivious) Quagsire(Unaware) Slowking(Own Tempo) Barraskewda(Swift Swim)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#tentacruel+gyarados-mega+quagsire+slowking+kingdra+walrein
+------------------------------------------------------------------------------------------------------
+Gym 9: Ice
+    Name:
+    Gender: Male
+    Age:
+    Bio:
+    Ace Level: 82
+    Ace: Mega-Glalie(Refrigerate)
+    Team Level: 80
+    Team: Suicune(Water Absorb) Cloyster(Skill Link) Froslass(Snow Cloak) Abombasnow(Snow Warning) Mamoswine(Thick Fat)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#dewgong+cloyster+suicune+glalie-mega+weavile+mamoswine
+------------------------------------------------------------------------------------------------------
+Gym 10: Ground
+    Name:
+    Gender: Male
+    Age:
+    Bio:
+    Ace Level: 88
+    Ace: Mega-Garchomp(Sand Force)
+    Team Level: 86
+    Team: Nidoking(Sheer Force) Sandaconda(Sand Veil) Landorus(Intimidate) Whiscash(Oblivious) Wormadam[Sandy Cloak](Overcoat)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#nidoking+whiscash+wormadam-sandy+garchomp-mega+krookodile+landorus
+------------------------------------------------------------------------------------------------------
+Gym 11: Electric
+    Name: Professor Emma Dreinstein
+    Gender: Female
+    Age: 29
+    Bio: She earned a Phd. in Physics and Electrical Engineering. This led her to build the power Reactor that powers the entire Hexon Region. She spends her free time helping Armstrong in his experiments. She has an obvious crush on the man but Armstrong is too dense to notice it.
+    Ace Level: 96
+    Ace: Mega-Ampharos(Mold Breaker)(Ampharosite)
+    Team Level: 94
+    Team: Magnezone(Magnet Pull)(Choice Scarf) Tapu Koko(Electric Surge)(Choice Specs) Electivire(Motor Drive)(Life Orb) Elektross(Levitate)(Assault Vest) Toxtricity[Low Key Form](Punk Rock)(Throat Spray)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#raichu-alola+ampharos-mega+magnezone+electivire+eelektross+zeraora
+------------------------------------------------------------------------------------------------------
+Gym 12: Cosmic
+    Name: Armstrong
+    Gender: Male
+    Age: 39
+    Bio: As a boy he was intrigued by the mysteries of space. This led him to become a master of one of the types unique to the Hexon Region, Cosmic Typing. He uses his earnings as a gym leader to run experiments to study the unknown phenomenom of the Cosmic and Light Typings.
+    Ace Level: 106
+    Ace: Mega-Medicham(Pure Power)(Medichamite)
+    Team Level: 104
+    Team: Deoxys[Speed Forme](Pressure)(Choice Specs) Clefable(Cute Charm)(Leftovers) Starmie(Natural Cure)(Life Orb) Solrock(Levitate)(Moon Rock) Lunatune(Levitate)(Assault Vest)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#clefable+starmie+medicham-mega+lunatone+solrock+deoxys-speed
+------------------------------------------------------------------------------------------------------
+Gym 13: Bug
+    Name: Barthalamew
+    Gender: Male
+    Age: 15
+    Bio: A timid boy who was taken under the Champion's tutelage. His love for his Pokemon surpases most others in the Gym Challenge. The only problem is, his timid nature disallows the use of Mega-Evolution. His Scolipede was given to him by the Champion. 
+    Ace Level: 118
+    Ace: Scolipede [S](Speed Fast)(Life Orb)
+    Team Level: 116
+    Team: Drapion(Sniper)(Scope Lens) Genesect(Download)(Douse Drive) Ribombee(Shield Dust)(Focus Sash) Lurantis(Contrary)(Power Herb) Golisopod(Emergency Exit)(Insect Plate)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#drapion+scolipede+genesect+ribombee+lurantis+golisopod   
+------------------------------------------------------------------------------------------------------
+Gym 14: Psychic
+    Name: "Maestro"
+    Gender: Male
+    Age: 27
+    Bio: A stage magician that specializes in Psychic Pokemon. He performs tricks and uses his pokemon to lay advantages for himself in battle.
+    Ace Level: 126
+    Ace: Mega-Alakazam(Trace)(Alakazamite)
+    Team Level: 124
+    Team: Mew(Synchronize)(Red Card) Metagross(Clear Body)(Weakness Policy) Hatterene(Magic Bounce)(Life Orb) Delphox(Magician)(Colbur Berry) Claydol(Levitate)(Leftovers)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#alakazam-mega+mew+claydol+metagross+delphox
+    https://plan.pokemonteams.io/#hatterene
+------------------------------------------------------------------------------------------------------
+Gym 15: Ghost
+    Name: (Adam)
+    Gender: Male
+    Age: ???
+    Bio: A strange man in a plague doctor outfit that suddenly appeared three years ago and shocked the Gym Challenge with his skill and mastery over the Ghost typing. He never takes of his mask so nobody knows his true age or face.
+    Ace Level: 140
+    Ace: Mega-Gengar(Shadow Tag)(Gengarite)
+    Team Level: 138
+    Team: Aegislash(Stance Change)(Leftovers) Runerigus(Wandering Spirit)(Shell Bell) Trevenant(Natural Cure)(Choice Band) Marshadow(Technician)(Life Orb) Dusknoir(Pressure)(Assault Vest)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#gengar-mega+dusknoir+cofagrigus+aegislash+trevenant+marshadow
+------------------------------------------------------------------------------------------------------
+Gym 16: Flying
+    Name: (Selina) Beauregard
+    Gender: Female
+    Age: 18
+    Bio: A young Trainer who took on the gym Challenge 8 years prior. She loves the feeling of being free while flying and became a flying type Specialist. She defeated the elite four when they were just starting out but choose to stay as a gym leader after seeing the Horrible atitude of the previous Flying type gym leader towards trainers. What most dont know is that she was Champion of all of two days before she quit after realising that it was to time consuming to be champion and gave little to no free time to fly with her pokemon.
+    Ace Level: 150
+    Ace: Lugia(Multiscale)(Leftovers)
+    Team Level: 148
+    Team: Mega-Charizard-Y(Drought)(Charizardite) Gliscor(Poison Heal)(Toxic Orb) Dragonite(Multiscale)(Heavy Duty Boots) Decidueye(Apparitionize)(Spell Tag) Corviknight(Mirror Armour)(Rocky Helmet)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#charizard-mega-y+dragonite+crobat+lugia+gliscor+decidueye
+------------------------------------------------------------------------------------------------------
+Elite Four 1: Normal
+    Name: Catherine
+    Gender: Female
+    Age: 37
+    Bio: Suburban Mother who became a Pokemon Trainer to motivate her kids into becoming trainers themselves. She ended up getting so engrossed in Battling that she become an Elite Four Member by accident and became a Figure for her 4 kids to look up too.
+    Ace Level: 166
+    Ace:Mega-Kangaskhan(Parental Bond)(Kangaskhanite)
+    Team Level: 164
+    Team: Meloetta(Serene Grace)(King's Rock) Porygon2(Download)(Eviolite) Blissey(Serene Grace)(Leftovers) Drampa(Sap Sipper)(Choice Band) Indeedee[Male](Psychic Surge)(Psychic Seed)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#kangaskhan-mega+porygon2+meloetta+pyroar-male+toucannon+drampa
+------------------------------------------------------------------------------------------------------
+Elite Four 2: Light
+    Name: The White Kninght
+    Gender: Male
+    Age: 36
+    Bio: One of the first people to beat the Gym Challenge. As he walked into the Elite Four room for the very first meeting he met his mortal enemy for the first time The Black Knight. His passion for Haikus is so mighty that he only talks in their formatting.
+    Ace Level: 166
+    Ace: Mega-Sabeleye(Magic Bounce)(Sablenite)
+    Team Level: 164
+    Team: Milotic(Marvel Scale)(Flame Orb) Aurorus(Refrigerate)(Toxic Orb) Cresselia(Levitate)(Leftovers) Celesteela(Beast Boost)(Power Herb) Blacephalon(Beast Boost)(Choice Scarf)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#sableye-mega+milotic+cresselia+aurorus+celesteela+blacephalon
+------------------------------------------------------------------------------------------------------
+Elite Four 3: Dark
+    Name: The Black Knight
+    Gender: Male
+    Age: 36.083
+    Bio: One of the first people to defeat all 16 Gym Leaders. As he met his fellow Elite Four Members for the first time he met his eternal rival The White Knight. His passion for Lymerics influences him to talk in their formatting. He likes to point out the fact that he is 0.083 years older than The White Knight.
+    Ace Level: 166
+    Ace: Malamar(Contrary)(Scope Lens)
+    Team Level: 164
+    Team: Alolan-Muk(Poison Touch)(Black Sludge) Honchkrow(Moxie)(Flying Gem) Mega-Absol(Magic Bounce)(Absolite) Darkrai(Bad Dreams)(Life Orb) Pangoro(Scrappy)(Big Root)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#muk-alola+absol-mega+honchkrow+darkrai+pangoro+malamar
+------------------------------------------------------------------------------------------------------
+Elite Four 4: Fairy
+    Name: Cassandra
+    Gender: Female
+    Age: 25
+    Bio: She adores her younger sister, Alexandra (aka 'Lexi'), and supports her in her endeavers to eclipse herself in strength. Though she seems sweet she has a vicious side that appears if she or her younger sister are attacked in any way. She became an Elite Four Member to fund her mother's dream of becoming a fashion designer.
+    Ace Level: 166
+    Ace: Mega-Gardevoir(Pixilate)(Gardevoirite)
+    Team Level: 164
+    Team: Alolan-Ninetails(Snow Warning)(Light Clay) Primerina(Liquid Voice)(Throat Spray) Togekiss(Serene Grace)(King's Rock) Magearna(Soul Heart)(Assault Vest) Grimmsnarl(Prankster)(Leftovers)
+    https://richi3f.github.io/pokemon-team-planner/national_dex.html#ninetales-alola+gardevoir-mega+togekiss+primarina+magearna
+------------------------------------------------------------------------------------------------------
+Champion: Bug
+    Name: Emily
+    Gender: Female
+    Age: ???
+    Bio: A mysterious girl that no one knows alot about. Came from Sinnoh, but became the Champion of Galar. She gave up her post for mourning after losing her loved one. She later created the Hexon region as an Experiment.
+    Ace Level: 170
+    Ace: Mega-Volcarona(Solar Inferno)(Volcaronite)
+    Team Level: 168
+    Team: Centiskorch(Flash Fire)(Fire Gem) Frosmoth(Ice Scales)(Nevermeltice) Orbeetle(Swarm)(Life Orb) Galvantula(Unnerve)(Magnet) Buzzwole(Beast Boost)(Choice Band)
+    https://plan.pokemonteams.io/#volcarona+centiskorch+frosmoth+orbeetle+vikavolt+shedinja
+------------------------------------------------------------------------------------------------------

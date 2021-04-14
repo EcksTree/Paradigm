@@ -26,3 +26,7 @@ BattleVS         = trainerSM
 [TEAMROCKET_F]
 BattleIntro      = evilTeam
 BattleVS         = trainerSM
+#-------------------------------
+[UNOVAE4_Grimsley]
+BattleEnv		= DARKNESS
+BattleVS		= classicVS

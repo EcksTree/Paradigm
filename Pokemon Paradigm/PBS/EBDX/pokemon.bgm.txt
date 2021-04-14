@@ -119,6 +119,33 @@ BattleBGM		= Battle! Solgaleo_Lunala.ogg
 [NECROZMA]
 BattleBGM		= Battle! Solgaleo_Lunala.ogg
 #-------------------------------
+[NIHILEGO]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[BUZZWOLE]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[PHEROMOSA]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[XURKITREE]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[CELESTEELA]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[KARTANA]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[GUZZLORD]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[STAKATAKA]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
+[BLACEPHALON]
+BattleBGM		= Battle! Ultra_Beast.ogg
+#-------------------------------
 [ZACIAN]
 BattleBGM		= Battle! Zacian_Zamazenta.ogg
 #-------------------------------
@@ -127,3 +154,9 @@ BattleBGM		= Battle! Zacian_Zamazenta.ogg
 #-------------------------------
 [ETERNATUS]
 BattleBGM		= Battle! Eternatus.ogg
+#-------------------------------
+[REGIELEKI]
+BattleBGM		= Battle! Regis.ogg
+#-------------------------------
+[REGIDRAGO]
+BattleBGM		= Battle! Regis.ogg

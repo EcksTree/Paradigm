@@ -3689,3 +3689,6 @@ BattlerAltitude = 0
 BattlerPlayerY  = 14
 BattlerEnemyY   = 16
 BattlerAltitude = 0
+#-------------------------------
+[BUZZWOLE]
+BattleIntro = ultraSM
