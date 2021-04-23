@@ -61,12 +61,14 @@ class PokeBattle_Battler
   def pbUseMove(*args)
     # displays trainer dialogue if applicable
     @battle.scene.pbTrainerBattleSpeech(playerBattler?(self) ? "attack": "attackOpp")
+    @battle.scene.briefmessage = true
     return pbUseMove_ebdx(*args)
   end
 
   alias pbFaint_ebdx pbFaint unless self.method_defined?(:pbFaint_ebdx)
   def pbFaint(*args)
     show = !@fainted
+    @battle.scene.briefmessage = true
     ret = pbFaint_ebdx(*args)
     # displays trainer dialogue if applicable
     @battle.scene.pbTrainerBattleSpeech(playerBattler?(self) ? "fainted" : "faintedOpp") if show
@@ -86,8 +88,9 @@ class PokeBattle_Scene
     return if !@battle.midspeech || !@battle.midspeech.is_a?(Array)
     @briefmessage = false
     ret = false
+    max = @battle.opponent ? @battle.opponent.length : @battle.pbSideSize(1)
     # iterate through potential double battler indexes
-    for index in 0...@battle.midspeech.length
+    for index in 0...[@battle.midspeech.length, max].min
       handled = false
       # skip if unable to interface
       next if !@battle.midspeech[index] || !@battle.midspeech[index].is_a?(Hash)
@@ -200,7 +203,7 @@ class PokeBattle_Scene
     @sprites["opponent"].lock
     @sprites["opponent"].z = 10
     v = (@battle.doublebattle? && speech) ? 3 : -1
-    @sprites["opponent"].x = @sprites["battlebg"].battler(v).x + (speech ? 200 : 160)
+    @sprites["opponent"].x = @sprites["battlebg"].battler(v).x + (speech ? 200 : 160) + (@battle.doublebattle? && speech ? 96 : 0)
     @sprites["opponent"].y = @sprites["battlebg"].battler(v).y - (speech ? 2 : -40)
     @sprites["opponent"].opacity = 0
     # draws black boxes
@@ -319,7 +322,7 @@ class PokeBattle_AI
     movesData = pbLoadMovesData
     # get opponent info
     opponent = @battle.pbGetOwnerFromBattlerIndex(idxBattler)
-    selAce = EliteBattle.getTrainerData(opponent.trainertype, :ACE, opponent)
+    selAce = EliteBattle.getTrainerData(opponent.trainertype, :ACE, opponent) if !opponent.nil?
     selAce = nil if !selAce.is_a?(Numeric) || selAce < 1 || selAce > 6
     # loop through possible selections
     enemies.each do |i|

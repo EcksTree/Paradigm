@@ -13,6 +13,11 @@ def pbLoadPokemonBitmapSpecies(pokemon, species, back = false, scale = FRONT_SPR
   ret = nil; pokemon = pokemon.pokemon if pokemon.respond_to?(:pokemon)
   # sauce
   species = getConst(PBSpecies, :BIDOOF) if hasConst?(PBSpecies, :BIDOOF) && defined?(firstApr?) && firstApr?
+  # applies scale
+  scale = back ? BACK_SPRITE_SCALE : FRONT_SPRITE_SCALE
+  # gets additional scale (if applicable)
+  s = EliteBattle.getData(species, PBSpecies, (back ? :BACKSCALE : :SCALE), (pokemon.form rescue 0))
+  scale = s if !s.nil? && s.is_a?(Numeric)
   # get more metrics
   s = EliteBattle.getData(species, PBSpecies, :SPRITESPEED, (pokemon.form rescue 0))
   speed = s if !s.nil? && s.is_a?(Numeric)
@@ -26,7 +31,8 @@ def pbLoadPokemonBitmapSpecies(pokemon, species, back = false, scale = FRONT_SPR
     end
     bitmapFileName = pbResolveBitmap(bitmapFileName)
   else
-    shiny = (!pokemon.superVariant.nil? && pokemon.isSuperShiny?) ? pokemon.superVariant : pokemon.isShiny?
+    shiny = pokemon.isShiny?
+    shiny = pokemon.superVariant if (!pokemon.superVariant.nil? && pokemon.isSuperShiny?)
     params = [species, back, pokemon.isFemale?, shiny, (pokemon.form rescue 0), (pokemon.isShadow? rescue 0), (pokemon.dynamax rescue false), (pokemon.dynamax && pokemon.gfactor rescue false)]
     bitmapFileName = pbCheckPokemonBitmapFiles(params)
   end
@@ -80,6 +86,12 @@ end
 #===============================================================================
 def pbLoadSpeciesBitmap(species, female=false, form=0, shiny=false, shadow=false, back=false, egg=false, scale=FRONT_SPRITE_SCALE)
   ret = nil
+  # applies scale
+  scale = back ? BACK_SPRITE_SCALE : FRONT_SPRITE_SCALE
+  # gets additional scale (if applicable)
+  s = EliteBattle.getData(species, PBSpecies, (back ? :BACKSCALE : :SCALE), (form rescue 0))
+  scale = s if !s.nil? && s.is_a?(Numeric)
+  # check sprite
   if egg
     bitmapFileName = sprintf("Graphics/EBDX/Battlers/Eggs/%s", getConstantName(PBSpecies, species)) rescue nil
     if !pbResolveBitmap(bitmapFileName)

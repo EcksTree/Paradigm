@@ -118,7 +118,6 @@ module EBCompiler
   # compile all the necessary PBS data
   #-----------------------------------------------------------------------------
   def self.compile
-    Input.update
     return if !$DEBUG || !Dir.safe?("PBS/EBDX") || File.safe?("Game.rgssad")
     pbs = Dir.get("PBS/EBDX", "*.txt", false)
     Dir.create("PBS/Plugins")
@@ -157,6 +156,7 @@ module EBCompiler
     self.compileAnimations
     # clean up
     GC.start
+    EliteBattle.set(:compiled, true)
   end
   #-----------------------------------------------------------------------------
   # print out formatting error
@@ -171,13 +171,33 @@ module EBCompiler
     $raise_msg = "File: #{filename}\nError compiling data in Section: #{sectn}\nWrong number of arguments for Key: #{key}, got #{val.length} expected #{len}"
     return ""
   end
+  #-----------------------------------------------------------------------------
+  # interpret all the data from cache
+  #-----------------------------------------------------------------------------
+  def self.addFromCached
+    return if !$DEBUG
+    # get cache
+    cache = EliteBattle.get(:cachedData)
+    for ch in cache
+      # run each from cache
+      EliteBattle.addData(*ch)
+    end
+    # clear cache
+    cache.clear
+    EliteBattle.set(:cachedData, [])
+    # force start garbage collector
+    GC.start
+  end
+  #-----------------------------------------------------------------------------
 end
 #===============================================================================
 # run compiler
+raise "Place the EBDX script above [[Main]] but under all the default Essentials scripts!" if !defined?(pbCompiler)
 alias pbCompiler_ebdx pbCompiler unless defined?(pbCompiler_ebdx)
 def pbCompiler
   pbCompiler_ebdx
   EBCompiler.compile
   EliteBattle.setupData
   EliteBattle.setupGlobalAnimationMap
+  EBCompiler.addFromCached
 end

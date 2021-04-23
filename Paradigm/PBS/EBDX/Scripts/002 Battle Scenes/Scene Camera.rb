@@ -20,8 +20,17 @@ class PokeBattle_Scene
     @fancyMsg.update if @fancyMsg && !@fancyMsg.disposed?
     # dex data
     @sprites["dexdata"].update if @sprites["dexdata"]
+    pbHideAllDataboxes if @sprites["dexdata"]
     # vector update
     @vector.update
+    # trick for clearing message windows
+    if @inMoveAnim.is_a?(Numeric)
+      @inMoveAnim += 1
+      if @inMoveAnim > Graphics.frame_rate*0.5
+        clearMessageWindow
+        @inMoveAnim = false
+      end
+    end
     # backdrop update
     @sprites["battlebg"].update
     @sprites["trainer_Anim"].update

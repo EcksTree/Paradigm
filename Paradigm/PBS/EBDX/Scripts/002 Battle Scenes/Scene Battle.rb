@@ -3,7 +3,7 @@
 #===============================================================================
 class PokeBattle_Scene
   # additional scene attributes
-  attr_accessor :idleTimer, :safaribattle, :vector
+  attr_accessor :idleTimer, :safaribattle, :vector, :inMoveAnim
   attr_accessor :sendingOut, :afterAnim, :lowHPBGM
   attr_accessor :briefmessage, :sprites, :introdone
   attr_accessor :playerLineUp, :opponentLineUp
@@ -23,9 +23,9 @@ class PokeBattle_Scene
     @battle = battle
     @battlers = battle.battlers
     # checks whether to display integrated VS sequence
-    @integratedVS = @battle.opponent && @battle.opponent.length < 2 && !EliteBattle.get(:smAnim) && EliteBattle.canTransition?("integratedVS", @battle.opponent[0].trainertype, @battle.opponent[0].name, @battle.opponent[0].partyID)
+    @integratedVS = @battle.opponent && @battle.opponent.length < 2 && !EliteBattle.get(:smAnim) && EliteBattle.canTransition?("integratedVS", @battle.opponent[0].trainertype, PBTrainers, @battle.opponent[0].name, @battle.opponent[0].partyID)
     # check if minor trainer transition is applied
-    @minorAnimation = @battle.opponent && !@integratedVS && EliteBattle.canTransition?("minorTrainer", @battle.opponent[0].trainertype, @battle.opponent[0].name, @battle.opponent[0].partyID)
+    @minorAnimation = @battle.opponent && !@integratedVS && EliteBattle.canTransition?("minorTrainer", @battle.opponent[0].trainertype, PBTrainers, @battle.opponent[0].name, @battle.opponent[0].partyID)
     # setup for initial vector configuration
     vec = EliteBattle.getVector(:ENEMY)
     if @battle.opponent && @minorAnimation
@@ -36,6 +36,7 @@ class PokeBattle_Scene
     @vector.battle = @battle
     # setup for all the necessary variable
     @firstsendout = true
+    @inMoveAnim = false
     @lastcmd = [0, 0, 0, 0]
     @lastmove = [0, 0, 0, 0]
     @orgPos = nil
@@ -97,7 +98,7 @@ class PokeBattle_Scene
       @sprites["player_#{i}"].y = Graphics.height - @sprites["player_#{i}"].bitmap.height
       @sprites["player_#{i}"].z = 50
       @sprites["player_#{i}"].opacity = 0
-      @sprites["player_#{i}"].src_rect.width /= 4
+      @sprites["player_#{i}"].src_rect.width /= 5
     end
     # initializes trainer sprite
     if @battle.opponent
@@ -139,7 +140,7 @@ class PokeBattle_Scene
       end
     end
     # initialize Player battler 0 when follower enabled
-    if !EliteBattle.follower(@battle).nil?
+    if !EliteBattle.follower(@battle).nil? && !@safaribattle
       pkmn = @battlers[EliteBattle.follower(@battle)].pokemon
       @sprites["pokemon_#{EliteBattle.follower(@battle)}"].setPokemonBitmap(pkmn, true)
       @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone = Tone.new(-255, -255, -255, -255)
@@ -186,7 +187,7 @@ class PokeBattle_Scene
           @sprites["trainer_#{t}"].tone.gray += 255*0.05 if @sprites["trainer_#{t}"].tone.gray < 0
         end
         # fade in player battler when follower is out
-        if !EliteBattle.follower(@battle).nil?
+        if !EliteBattle.follower(@battle).nil? && !@safaribattle
           @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.all < 0
           @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray += 255*0.1 if @sprites["pokemon_#{EliteBattle.follower(@battle)}"].tone.gray < 0
         end
@@ -202,7 +203,7 @@ class PokeBattle_Scene
       pbShowPartyLineup(1)
     end
     # show databox for follower
-    if !EliteBattle.follower(@battle).nil?
+    if !EliteBattle.follower(@battle).nil? && !@safaribattle
       @sprites["dataBox_#{EliteBattle.follower(@battle)}"].appear if !EliteBattle.get(:smAnim)
     end
     # Play cry for wild Pokémon

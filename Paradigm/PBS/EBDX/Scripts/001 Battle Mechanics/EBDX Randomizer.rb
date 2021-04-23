@@ -191,6 +191,7 @@ module EliteBattle
     # disposes of message window
     pbDisposeMessageWindow(msgwindow)
     # adds randomizer rules
+    $PokemonGlobal.randomizerRules = added
     EliteBattle.addData(:RANDOMIZER, :RULES, added)
     # shows message
     msg = _INTL("Your selected Randomizer rules have been applied.")
@@ -201,25 +202,46 @@ module EliteBattle
     return added.length > 0
   end
   #-----------------------------------------------------------------------------
+  #  clear the randomizer content
+  #-----------------------------------------------------------------------------
+  def self.resetRandomizer
+    EliteBattle.reset(:randomizer)
+    if $PokemonGlobal
+      $PokemonGlobal.randomizedData
+      $PokemonGlobal.isRandomizer
+      $PokemonGlobal.randomizerRules
+    end
+  end
+  #-----------------------------------------------------------------------------
 end
 #===============================================================================
 #  helper functions to return randomized battlers and items
 #===============================================================================
 def randomizeSpecies(species, static = false, gift = false)
   return species if !EliteBattle.get(:randomizer)
-  species = getConst(PBSpecies, species) unless species.is_a?(Numeric)
+  pokemon = nil
+  species = getConst(PBSpecies, species) if species.is_a?(Symbol)
+  if species.is_a?(PokeBattle_Pokemon)
+    pokemon = species.clone
+    species = pokemon.species
+  end
   # if defined as an exclusion rule, species will not be randomized
   excl = EliteBattle.getData(:RANDOMIZER, PBMetrics, :EXCLUSIONS_SPECIES)
   if !excl.nil? && excl.is_a?(Array)
     for ent in excl
       s = ent.is_a?(Numeric) ? ent : getConst(PBSpecies, ent)
-      return species if species == s
+      return (pokemon.nil? ? species : pokemon) if species == s
     end
   end
   # randomizes static encounters
-  return EliteBattle.getRandomizedData(species, :STATIC, species) if static
-  return EliteBattle.getRandomizedData(species, :GIFTS, species) if gift
-  return species
+  species = EliteBattle.getRandomizedData(species, :STATIC, species) if static
+  species = EliteBattle.getRandomizedData(species, :GIFTS, species) if gift
+  if !pokemon.nil?
+    pokemon.species = species
+    pokemon.calcStats
+    pokemon.resetMoves
+  end
+  return pokemon.nil? ? species : pokemon
 end
 
 def randomizeItem(item)
@@ -327,6 +349,7 @@ end
 class PokemonGlobalMetadata
   attr_accessor :randomizedData
   attr_accessor :isRandomizer
+  attr_accessor :randomizerRules
 end
 #===============================================================================
 #  refresh cache on load
@@ -336,7 +359,10 @@ class PokemonLoadScreen
   def pbStartLoadScreen
     ret = pbStartLoadScreen_ebdx_randomizer
     # refresh current cache
-    EliteBattle.startRandomizer(true) if $PokemonGlobal && $PokemonGlobal.isRandomizer
+    if $PokemonGlobal && $PokemonGlobal.isRandomizer
+      EliteBattle.startRandomizer(true)
+      EliteBattle.addData(:RANDOMIZER, :RULES, $PokemonGlobal.randomizerRules) if !$PokemonGlobal.randomizerRules.nil?
+    end
     return ret
   end
 end

@@ -10,6 +10,8 @@ class PokeBattle_Scene
     # skip for followers
     if sendOuts.length < 2 && !EliteBattle.follower(@battle).nil?
       @firstsendout = false
+      clearMessageWindow(true)
+      playBattlerCry(@battlers[EliteBattle.follower(@battle)])
       return
     end
     metrics = load_data("Data/species_metrics.dat")
@@ -66,18 +68,18 @@ class PokeBattle_Scene
       next if !startBattle
       sendOuts.each_with_index do |b, m|
         next if !@sprites["player_#{m}"]
-        @sprites["player_#{m}"].src_rect.x += (@sprites["player_#{m}"].bitmap.width/4) if j == 0
+        @sprites["player_#{m}"].src_rect.x += (@sprites["player_#{m}"].bitmap.width/5) if j == 0
         @sprites["player_#{m}"].x -= 2 if j > 0
       end
       self.wait(1, false)
     end
     self.wait(6, true) if startBattle
-    for j in 0...4
+    for j in 0...6
       next if !startBattle
       sendOuts.each_with_index do |b, m|
         next if !@sprites["player_#{m}"]
-        @sprites["player_#{m}"].src_rect.x += (@sprites["player_#{m}"].bitmap.width/4) if j%2 == 0
-        @sprites["player_#{m}"].x += 3
+        @sprites["player_#{m}"].src_rect.x += (@sprites["player_#{m}"].bitmap.width/5) if j%2 == 0
+        @sprites["player_#{m}"].x += 3 if j < 4
       end
       self.wait(1, false)
     end
@@ -122,13 +124,13 @@ class PokeBattle_Scene
     # configuring the Y position of Pokemon sprites
     sendOuts.each_with_index do |b, m|
       battler = @battlers[b[0]]; i = battler.index
+      playBattlerCry(battler)
       next if i == EliteBattle.follower(@battle)
       @sprites["pokemon_#{i}"].visible = true
       @sprites["pokemon_#{i}"].y -= 120 + (orgcord[m] - @sprites["pokemon_#{i}"].oy)*z3 if !dig[m]
       @sprites["pokemon_#{i}"].zoom_x = 0
       @sprites["pokemon_#{i}"].zoom_y = 0
       @sprites["dataBox_#{i}"].appear
-      playBattlerCry(battler)
       burst["#{i}"] = EBBallBurst.new(@viewport, @sprites["pokeball#{i}"].x, @sprites["pokeball#{i}"].y, 29, (startBattle ? 1 : 2), balltype[m])
     end
     # starting Pokemon release animation

@@ -45,6 +45,9 @@ module EliteBattle
   @logger = ErrorLogger.new("errorlogEBDX.txt")
   # cache move animations at game load
   @moveAnimations = load_data("Data/PkmnAnimations.rxdata")
+  # ensure compiling
+  @compiled = false
+  @cachedData = []
   #-----------------------------------------------------------------------------
   # initialize logger
   #-----------------------------------------------------------------------------
@@ -88,9 +91,9 @@ module EliteBattle
         @nextBattleScript = nil
       elsif !@nextBattleScript.nil?
         @nextBattleScript = [@nextBattleScript] if !@nextBattleScript.is_a?(Array)
-        @nextBattleScript.push(val)
+        @nextBattleScript.push(val.is_a?(Hash) ? val.clone : nil)
       else
-        @nextBattleScript = [val]
+        @nextBattleScript = [val.is_a?(Hash) ? val.clone : nil]
       end
     else
       # merges hashes if applicable
@@ -140,6 +143,22 @@ module EliteBattle
     return nil
   end
   #-----------------------------------------------------------------------------
+  # checks if observed dataset contains form info (prevent skipping)
+  #-----------------------------------------------------------------------------
+  def self.hasFormData?(dataset, skey, const, form)
+    return false if !dataset.is_a?(Hash)
+    for key in dataset.keys
+      next if key == skey
+      for val in dataset[key]
+        if val.to_s.include?("_")
+          vry = val.to_s.split("_")
+          return true if vry[0] == const && vry[1].to_i == form
+        end
+      end
+    end
+    return false
+  end
+  #-----------------------------------------------------------------------------
   # registers all BGM
   #-----------------------------------------------------------------------------
   def self.assignBGM(key, *args)
@@ -148,24 +167,19 @@ module EliteBattle
   #-----------------------------------------------------------------------------
   # gets next battle BGM
   #-----------------------------------------------------------------------------
-  def self.nextBattleBGM?(id, variant = 0, ext = 0)
+  def self.nextBattleBGM?(id, variant = 0, ext = 0, mod = PBTrainers)
     return nil if id.nil?
+    # try with form variants
     for key in @bgmData.keys
-      array = @bgmData[key]
-      array = [array] if !array.is_a?(Array)
-      for val in array
-        if val.to_s.include?("__i__")
-          vry = [val.to_s.split("__i__")[0]]
-          vry.push(variant) if variant.is_a?(String)
-          vry.push(ext) if ext > 0
-          return key if vry.join("__i__").to_sym == val
-        elsif val.to_s.include?("_")
-          prk = val.to_s.split("_"); variant = 0 if prk[1] == "0" && !array.include?("#{prk[0]}_#{variant}".to_sym)
-          return key if "#{self.const(prk[0].to_sym)}_#{prk[1]}" == "#{id}_#{variant}"
-        end
-        return key if id == self.const(val)
+      return key if self.canTransition?(key, id, mod, variant, ext, @bgmData)
+    end
+    # try without form variants
+    if mod == PBSpecies
+      for key in @bgmData.keys
+        return key if self.canTransition?(key, id, mod, 0, 0, @bgmData)
       end
     end
+    # return nothing
     return nil
   end
   #-----------------------------------------------------------------------------
@@ -183,12 +197,12 @@ module EliteBattle
   #-----------------------------------------------------------------------------
   # plays the next transition
   #-----------------------------------------------------------------------------
-  def self.playNextTransition(viewport, trainer = nil)
+  def self.playNextTransition(viewport, trainer = nil, mod = PBTrainers)
     @tviewport = viewport
     # trainer assigned custom transitions
     if !trainer.nil?
       for key in @customTransitions.keys
-        if self.canTransition?(key, trainer.trainertype, trainer.name, trainer.partyID)
+        if self.canTransition?(key, trainer.trainertype, mod, trainer.name, trainer.partyID)
           wrapper = CallbackWrapper.new
           wrapper.set({ :viewport => viewport, :trainer => trainer, :trainerid => trainer.trainertype, :name => trainer.name, :partyID => trainer.partyID })
           wrapper.execute(@customTransitions[@key])
@@ -226,9 +240,10 @@ module EliteBattle
   #-----------------------------------------------------------------------------
   # checks whether or not to run special transition for constant
   #-----------------------------------------------------------------------------
-  def self.canTransition?(transition, id, variant = 0, ext = 0)
-    return false if !@transitionData.has_key?(transition)
-    array = @transitionData[transition]
+  def self.canTransition?(transition, id, mod = PBTrainers, variant = 0, ext = 0, dataset = @transitionData)
+    return false if !dataset.has_key?(transition)
+    vrnt = variant
+    array = dataset[transition]
     array = [array] if !array.is_a?(Array)
     return true if array.include?(:ALLOW_ALL)
     for val in array
@@ -238,10 +253,12 @@ module EliteBattle
         vry.push(ext) if ext > 0
         return true if vry.join("__i__").to_sym == val
       elsif val.to_s.include?("_")
-        prk = val.to_s.split("_"); variant = 0 if prk[1] == "0" && !array.include?("#{prk[0]}_#{variant}".to_sym)
-        return true if "#{self.const(prk[0].to_sym)}_#{prk[1]}" == "#{id}_#{variant}"
+        prk = val.to_s.split("_")
+        variant = 0 if prk[1] == "0" && !array.include?("#{prk[0]}_#{variant}".to_sym)
+        return true if "#{self.const(prk[0].to_sym)}_#{prk[1]}" == "#{id}_#{vrnt}"
+        return true if "#{self.const(prk[0].to_sym)}_#{prk[1]}" == "#{id}_#{variant}" && !self.hasFormData?(@transitionData, transition, prk[0], vrnt)
       end
-      return true if self.const(val) == id
+      return true if self.const(val, mod) == id
     end
     return false
   end
@@ -258,7 +275,7 @@ module EliteBattle
   def self.smTransition?(id, poke = false, variant = 0, extr = 0)
     ret = false
     for ext in self.smTransitions?
-      ret = true if self.canTransition?("#{ext}SM", id, variant, extr)
+      ret = true if self.canTransition?("#{ext}SM", id, (poke ? PBSpecies : PBTrainers), variant, extr)
     end
     str = poke ? "species" : "trainer"
     ret = false if !pbResolveBitmap(sprintf("Graphics/EBDX/Transitions/#{str}%03d", id)) && !pbResolveBitmap(sprintf("Graphics/EBDX/Transitions/#{str}%03d_%d", id, poke ? variant : 0))
@@ -268,6 +285,13 @@ module EliteBattle
   # adds additional metadata for Trainer and Pokemon
   #-----------------------------------------------------------------------------
   def self.addData(constant, *args)
+    # compiler exception
+    if !@compiled && $DEBUG
+      args.insert(0, constant)
+      @cachedData.push(args)
+      return
+    end
+    # begin data processing
     constant = [constant] if !constant.is_a?(Array)
     mods = ["other"]
     for try_m in ["PBEnvironment", "PBTerrain", "PBTrainers", "PBSpecies"]
@@ -340,6 +364,8 @@ module EliteBattle
           else
             set[args[i+1]] = [const]
           end
+        elsif [:BACKDROP].include?(args[i]) && args[i+1].is_a?(Symbol) && defined?(EBEnvironment) && hasConst?(EBEnvironment, args[i+1])
+          data[args[i]] = getConst(EBEnvironment, args[i+1])
         else
           data[args[i]] = args[i+1]
         end
@@ -382,8 +408,12 @@ module EliteBattle
         vry = hash_key.to_s.split("__i__")
         ct = self.const(vry[0].to_sym, mod)
         k = ct
-        k = nil if (variant.is_a?(String) && vry.length < 2) || (!variant.is_a?(String) && vry.length > 1)
-        k = nil if (ext > 0 && vry.length < 3) || (ext < 1 && vry.length > 2)
+        if ext.nil? || vry.nil?
+          k = nil
+        else
+          k = nil if (variant.is_a?(String) && vry.length < 2) || (!variant.is_a?(String) && vry.length > 1)
+          k = nil if (ext > 0 && vry.length < 3) || (ext < 1 && vry.length > 2)
+        end
       else
         k = self.const(hash_key, mod)
       end
@@ -404,11 +434,10 @@ module EliteBattle
     d1 = self.getData(const, PBTrainers, key)
     d2 = trainer.nil? ? nil : self.getData(const, PBTrainers, key, trainer.name)
     d3 = trainer.nil? ? nil : self.getData(const, PBTrainers, key, trainer.name, trainer.partyID)
-    data = nil
-    data = d1 if !d1.nil?
-    data = d2 if !d2.nil?
-    data = d3 if !d3.nil?
-    return data
+    return d3 if !d3.nil?
+    return d2 if !d2.nil?
+    return d1 if !d1.nil?
+    return nil
   end
   #-----------------------------------------------------------------------------
   # adds main battler metrics
