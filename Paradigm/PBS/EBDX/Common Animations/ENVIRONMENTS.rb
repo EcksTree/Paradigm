@@ -92,6 +92,18 @@ module EBEnvironment
     }
   }
   #-----------------------------------------------------------------------------
+  NET = {
+    "backdrop" => "Net", "img001" => {
+      :scrolling => true, :vertical => true, :speed => 1,
+      :bitmap => "decor003d",
+      :oy => 180, :y => 90, :flat => true
+    }, "img002" => {
+      :bitmap => "crowd_d",
+      :oy => 32, :y => 112, :z => 2, :flat => false, :sheet => true,
+      :vertical => true, :speed => 8, :frames => 2
+    }
+  }
+  #-----------------------------------------------------------------------------
   MOUNTAIN = {
     "backdrop" => "Mountain", "sky" => true, "trees" => {
       :elements => 8, :bitmap => "treeC", :colorize => "slight",

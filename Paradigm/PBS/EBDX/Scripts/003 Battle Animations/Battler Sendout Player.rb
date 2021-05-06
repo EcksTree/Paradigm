@@ -9,9 +9,9 @@ class PokeBattle_Scene
     @playerLineUp.toggle = false
     # skip for followers
     if sendOuts.length < 2 && !EliteBattle.follower(@battle).nil?
-      @firstsendout = false
       clearMessageWindow(true)
       playBattlerCry(@battlers[EliteBattle.follower(@battle)])
+      @firstsendout = false
       return
     end
     metrics = load_data("Data/species_metrics.dat")
